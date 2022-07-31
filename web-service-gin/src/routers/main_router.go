@@ -1,14 +1,17 @@
 package routers
 
-import "github.com/gin-gonic/gin"
+import (
+	"mostafiz9900/web-service-gin/src/controllers"
+
+	"github.com/gin-gonic/gin"
+)
 
 func MainRouter(router *gin.Engine) {
-	ro := router.Group("api/v1")
-	ro.GET("/main", func(cxt *gin.Context) {
-		cxt.JSON(200, gin.H{
-			"satus": "success",
-			"code":  "Go lang gin mysql api",
-		})
-	})
+	userRepo := controllers.New()
+	ro := router.Group("/api/v1")
+	ro.GET("/main", controllers.GetAllUser())
+	ro.GET("/create", userRepo.CreateUser)
+	ro.GET("/users", userRepo.GetUsers)
+	ro.POST("/insert", userRepo.PostUserInfo)
 
 }

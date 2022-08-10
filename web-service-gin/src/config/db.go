@@ -50,3 +50,4 @@ func connectDB() *gorm.DB {
 	}
 	return db
 }
+//  2nd mehodo connection 

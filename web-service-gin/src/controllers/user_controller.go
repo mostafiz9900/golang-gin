@@ -27,7 +27,8 @@ func (repository *UserRepo) CreateUser(c *gin.Context) {
 	c.BindJSON(&user)
 	err := models.CreateUser(repository.Db, &user)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
+		// c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
+		fmt.Println(err)
 	}
 	c.JSON(http.StatusOK, user)
 
@@ -39,6 +40,7 @@ func (repository *UserRepo) GetUsers(c *gin.Context) {
 	fmt.Println(result)
 	fmt.Println("ekhane")
 	if user != nil {
+
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": user})
 		return
 	}
